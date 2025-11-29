@@ -27,7 +27,8 @@
     .map-container img {
       width: 100%;
       height: 100%;
-      object-position: center 40%; /* zooms image to cover the whole viewport */
+      object-fit: cover;               /* map fills the screen */
+      object-position: center 40%;     /* lift image a bit so yellow path is visible */
       display: block;
     }
 
@@ -86,52 +87,52 @@
     <!-- CHANGE src IF YOUR FILE HAS A DIFFERENT NAME -->
     <img src="images/your-map.png" alt="Digital poetry sound map" />
 
-    <!-- 7 HOTSPOTS ALONG THE PATH – all play poem1.wav -->
+    <!-- 7 HOTSPOTS ALONG THE YELLOW PATH – all play poem1.wav -->
     <button
       class="hotspot"
-      style="top: 8%; left: 70%;"
+      style="top: 60%; left: 22%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 1"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 20%; left: 63%;"
+      style="top: 52%; left: 32%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 2"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 32%; left: 55%;"
+      style="top: 52%; left: 44%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 3"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 44%; left: 47%;"
+      style="top: 55%; left: 54%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 4"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 56%; left: 45%;"
+      style="top: 59%; left: 63%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 5"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 68%; left: 48%;"
+      style="top: 58%; left: 73%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 6"
     ></button>
 
     <button
       class="hotspot"
-      style="top: 80%; left: 52%;"
+      style="top: 62%; left: 84%;"
       data-audio="audio/poem1.wav"
       data-title="Poem – Point 7"
     ></button>
@@ -170,4 +171,5 @@
   </script>
 </body>
 </html>
+
 
