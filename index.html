@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Poetry Sound Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    .map-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .map-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hotspot {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .hotspot::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .hotspot:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    #now-playing {
+      position: fixed;
+      left: 1rem;
+      bottom: 1rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="map-container">
+    <!-- YOUR MAP IMAGE -->
+    <img src="images/your-map.png" alt="Digital poetry sound map" />
+
+    <!-- HOTSPOTS (example with 2 points) -->
+    <!-- Move them by changing top / left percentages -->
+
+    <button
+      class="hotspot"
+      style="top: 30%; left: 40%;"
+      data-audio="audio/poem1.mp3"
+      data-title="Poem 1 – North"
+    ></button>
+
+    <button
+      class="hotspot"
+      style="top: 65%; left: 70%;"
+      data-audio="audio/poem2.mp3"
+      data-title="Poem 2 – South-East"
+    ></button>
+  </div>
+
+  <div id="now-playing">Click a dot to listen.</div>
+
+  <!-- Hidden audio player -->
+  <audio id="player"></audio>
+
+  <script>
+    const hotspots = document.querySelectorAll(".hotspot");
+    const player = document.getElementById("player");
+    const nowPlaying = document.getElementById("now-playing");
+
+    hotspots.forEach((spot) => {
+      spot.addEventListener("click", () => {
+        const src = spot.dataset.audio;
+        const title = spot.dataset.title || "Untitled poem";
+
+        // if already playing this one, toggle pause
+        if (player.src.includes(src) && !player.paused) {
+          player.pause();
+          nowPlaying.textContent = "Paused: " + title;
+        } else {
+          player.src = src;
+          player.play();
+          nowPlaying.textContent = "Now playing: " + title;
+        }
+      });
+    });
+
+    player.addEventListener("ended", () => {
+      nowPlaying.textContent = "Click a dot to listen.";
+    });
+  </script>
+</body>
+</html>
