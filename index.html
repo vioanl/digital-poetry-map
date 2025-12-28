@@ -14,25 +14,26 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #000;
       color: #fff;
-      overflow: hidden; /* no scrollbars */
+      overflow: hidden;
     }
 
-    /* MAP FULLSCREEN */
     .map-container {
       position: fixed;
-      inset: 0; /* top/right/bottom/left = 0 */
+      inset: 0;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .map-container img {
       width: 100%;
       height: 100%;
-      /* object-fit: cover; */
-      object-position: center 40%; 
+      object-fit: cover;
       display: block;
+      transform: rotate(90deg) translateY(-8%);
     }
 
-    /* HOTSPOTS */
     .hotspot {
       position: absolute;
       width: 32px;
@@ -46,7 +47,11 @@
       cursor: pointer;
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+      z-index: 10;
     }
 
     .hotspot::after {
@@ -58,12 +63,40 @@
     }
 
     .hotspot:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.4);
     }
 
-    /* NOW PLAYING LABEL */
+    /* INFO BUTTON */
+    .info-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+      z-index: 20;
+    }
+
+    .info-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
     #now-playing {
       position: fixed;
       left: 1rem;
@@ -76,70 +109,77 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      z-index: 20;
     }
   </style>
 </head>
 <body>
   <div class="map-container">
+    <img src="https://vioanl.github.io/digital-poetry-map/images/your-map.png" alt="Digital poetry sound map" />
 
-    <!-- CHANGE src IF YOUR FILE HAS A DIFFERENT NAME -->
-    <img src="images/your-map.png" alt="Digital poetry sound map" />
-
-    <!-- 7 HOTSPOTS ALONG THE PATH – all play poem1.wav -->
+    <!-- Hotspots positioned along the yellow path (after rotation) -->
+    <!-- Top of yellow line -->
     <button
-    class="hotspot"
-    style="top: 61%; left: 23%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 1"
+      class="hotspot"
+      style="top: 8%; left: 82%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 1"
     ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 54%; left: 32%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 2"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 53%; left: 43%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 3"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 55%; left: 54%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 4"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 59%; left: 63%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 5"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 58%; left: 73%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 6"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 62%; left: 84%;"
-    data-audio="audio/poem1.wav"
-    data-title="Poem – Point 7"
-  ></button>
 
+    <!-- First turn -->
+    <button
+      class="hotspot"
+      style="top: 20%; left: 72%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 2"
+    ></button>
+
+    <!-- Second turn -->
+    <button
+      class="hotspot"
+      style="top: 32%; left: 60%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 3"
+    ></button>
+
+    <!-- Middle section -->
+    <button
+      class="hotspot"
+      style="top: 45%; left: 51%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 4"
+    ></button>
+
+    <!-- Lower middle -->
+    <button
+      class="hotspot"
+      style="top: 58%; left: 46%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 5"
+    ></button>
+
+    <!-- Near bottom turn -->
+    <button
+      class="hotspot"
+      style="top: 72%; left: 42%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 6"
+    ></button>
+
+    <!-- Bottom of path -->
+    <button
+      class="hotspot"
+      style="top: 88%; left: 36%;"
+      data-audio="audio/poem1.wav"
+      data-title="Poem – Point 7"
+    ></button>
   </div>
 
   <div id="now-playing">Click a point on the path to listen.</div>
 
-  <!-- Hidden audio player -->
+  <!-- Info button -->
+  <button class="info-button" onclick="window.location.href='about.html'">i</button>
+
   <audio id="player"></audio>
 
   <script>
@@ -152,7 +192,6 @@
         const src = spot.dataset.audio;
         const title = spot.dataset.title || "Untitled poem";
 
-        // If already playing this one, toggle pause
         if (player.src.includes(src) && !player.paused) {
           player.pause();
           nowPlaying.textContent = "Paused: " + title;
@@ -170,7 +209,3 @@
   </script>
 </body>
 </html>
-
-
-
-
