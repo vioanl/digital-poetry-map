@@ -63,6 +63,35 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
 
+    /* INFO BUTTON */
+    .info-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: all 0.2s ease;
+      z-index: 20;
+    }
+
+    .info-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
     /* NOW PLAYING LABEL */
     #now-playing {
       position: fixed;
@@ -137,6 +166,9 @@
 
   </div>
 
+  <!-- Info button -->
+  <button class="info-button" onclick="window.location.href='about.html'">i</button>
+
   <div id="now-playing">Click a point on the path to listen.</div>
 
   <!-- Hidden audio player -->
@@ -170,6 +202,3 @@
   </script>
 </body>
 </html>
-
-
-
