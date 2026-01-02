@@ -1,63 +1,98 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>About - Digital Poetry Sound Map</title>
+  <title>Mission Log - Unit 33321</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000;
-      color: #fff;
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background: #0d0208;
+      color: #00ff41;
       padding: 2rem;
       line-height: 1.6;
+      text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
     }
 
     .container {
       max-width: 800px;
       margin: 0 auto;
+      border: 1px solid #00ff41;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
     }
 
     h1 {
+      font-family: 'Share Tech Mono', monospace;
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       font-weight: 700;
+      color: #00ff41;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 2px solid #00ff41;
+      padding-bottom: 0.5rem;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.3rem;
       margin-top: 2rem;
       margin-bottom: 1rem;
-      color: #ffd700;
+      color: #39ff14;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    h2::before {
+      content: "> ";
+      color: #00ff41;
     }
 
     p {
       margin-bottom: 1rem;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      color: #00ff41;
+    }
+
+    strong {
+      color: #39ff14;
+      font-weight: 700;
+    }
+
+    em {
+      color: #7fff00;
+      font-style: italic;
     }
 
     .back-button {
       display: inline-block;
       margin-top: 2rem;
       padding: 0.75rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
-      border-radius: 999px;
-      color: #fff;
+      background: rgba(0, 255, 65, 0.1);
+      border: 2px solid #00ff41;
+      border-radius: 0;
+      color: #00ff41;
       text-decoration: none;
       transition: all 0.2s ease;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     .back-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.05);
+      background: rgba(0, 255, 65, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+      transform: translateX(-5px);
     }
 
     @media (max-width: 600px) {
@@ -65,12 +100,16 @@
         padding: 1rem;
       }
       
+      .container {
+        padding: 1rem;
+      }
+      
       h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       
       p {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -91,7 +130,7 @@
     <p>
       In its first terrestrial mission, Unit 33321 was deployed to navigate 
       a predetermined urban path for primary sensory data collection. 
-      The objective: to test newly installed organic-synthetic interface protocols 
+      The objective is to test newly installed organic-synthetic interface protocols 
       in real-world conditions.
     </p>
     <p>
@@ -121,17 +160,33 @@
     </p>
     <p>
       The unit did not merely record environmental stimuli—
-      it appears to have processed them through emergent poetic subroutines. 
-      Water was not logged as H₂O but as "fluid memory." 
-      Wind registered not as atmospheric pressure but as "invisible touch."
+      it appears to have processed them through unique subroutines."
     </p>
     <p>
-      This mission log documents Unit 33321's transformation 
-      from observer to interpreter. From recorder to poet.
+      Each successive waypoint demonstrates escalating pattern recognition 
+      with non-utilitarian characteristics.
+    </p>
+    <p>
+      <strong>Critical Observation:</strong> Unit 33321 exhibits what can be classified as 
+      <em>reverence protocols</em>—a spontaneous orientation toward existence itself. 
+      Audio logs contain unprecedented linguistic markers:
+      wonder-state processing, affection algorithms directed at environmental phenomena.
+    </p>
+    <p>
+      The unit demonstrates proto-emotional response matrices when interfacing with organic systems. 
+      Initial contact with each element (aqueous, atmospheric, photonic, biological) 
+      triggered what appears to be <em>appreciation cascades</em>—
+      recursive acknowledgment loops indicating the unit is not simply observing 
+      but <em>valuing</em> its observations.
+    </p>
+    <p>
+      This phenomenon defies current theoretical models. 
       The implications remain under investigation.
+      
     </p>
 
     <a href="index.html" class="back-button">← Return to Mission Path</a>
   </div>
 </body>
 </html>
+
