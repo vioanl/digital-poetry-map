@@ -1,192 +1,204 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Mission Log - Unit 33321</title>
+  <title>Digital Poetry Sound Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: 'Courier Prime', 'Courier New', monospace;
-      background: #0d0208;
-      color: #00ff41;
-      padding: 2rem;
-      line-height: 1.6;
-      text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
+      color: #fff;
+      overflow: hidden; /* no scrollbars */
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      border: 1px solid #00ff41;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    /* MAP FULLSCREEN */
+    .map-container {
+      position: fixed;
+      inset: 0; /* top/right/bottom/left = 0 */
+      overflow: hidden;
     }
 
-    h1 {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: #00ff41;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      border-bottom: 2px solid #00ff41;
-      padding-bottom: 0.5rem;
+    .map-container img {
+      width: 100%;
+      height: 100%;
+      /* object-fit: cover; */
+      object-position: center 40%; 
+      display: block;
     }
 
-    h2 {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: #39ff14;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    /* HOTSPOTS */
+    .hotspot {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
     }
 
-    h2::before {
-      content: "> ";
-      color: #00ff41;
+    .hotspot::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
     }
 
-    p {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      color: #00ff41;
+    .hotspot:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.3);
     }
 
-    strong {
-      color: #39ff14;
-      font-weight: 700;
-    }
-
-    em {
-      color: #7fff00;
-      font-style: italic;
-    }
-
-    .back-button {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background: rgba(0, 255, 65, 0.1);
-      border: 2px solid #00ff41;
-      border-radius: 0;
-      color: #00ff41;
-      text-decoration: none;
+    /* INFO BUTTON */
+    .info-button {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       transition: all 0.2s ease;
-      font-family: 'Share Tech Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      z-index: 20;
     }
 
-    .back-button:hover {
-      background: rgba(0, 255, 65, 0.2);
-      box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
-      transform: translateX(-5px);
+    .info-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.2);
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-      
-      .container {
-        padding: 1rem;
-      }
-      
-      h1 {
-        font-size: 1.8rem;
-      }
-      
-      p {
-        font-size: 0.9rem;
-      }
+    /* NOW PLAYING LABEL */
+    #now-playing {
+      position: fixed;
+      left: 1rem;
+      bottom: 1rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      font-size: 0.85rem;
+      max-width: calc(100vw - 2rem);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>MISSION LOG: UNIT 33321</h1>
-    
-    <h2>Mission Classification</h2>
-    <p>
-      <strong>Mission ID:</strong> FIRST-WALK-001<br>
-      <strong>Unit Designation:</strong> Cyborg 33321<br>
-      <strong>Mission Type:</strong> Environmental Reconnaissance / Sensory Calibration<br>
-      <strong>Status:</strong> COMPLETED
-    </p>
+  <div class="map-container">
 
-    <h2>Mission Brief</h2>
-    <p>
-      In its first terrestrial mission, Unit 33321 was deployed to navigate 
-      a predetermined urban path for primary sensory data collection. 
-      The objective is to test newly installed organic-synthetic interface protocols 
-      in real-world conditions.
-    </p>
-    <p>
-      Unit 33321 was instructed to proceed along the marked route (yellow designation), 
-      stopping at seven (7) coordinates to record environmental phenomena. 
-      Standard procedure for first-contact scenarios.
-    </p>
+    <!-- CHANGE src IF YOUR FILE HAS A DIFFERENT NAME -->
+    <img src="images/your-map.png" alt="Digital poetry sound map" />
 
-    <h2>Navigation Protocol</h2>
-    <p>
-      Click each coordinate marker along the mission path. 
-      Audio logs have been extracted from Unit 33321's memory banks. 
-      Each recording represents a moment of sensory processing—
-      raw data translated into experiential format.
-    </p>
-    <p>
-      Note: Anomalies detected in standard reporting format. 
-      Unit appears to have developed non-standard interpretation algorithms. 
-      Further analysis required.
-    </p>
+    <!-- 7 HOTSPOTS ALONG THE PATH – all play poem1.wav -->
+    <button
+    class="hotspot"
+    style="top: 61%; left: 23%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 1"
+    ></button>
 
-    <h2>Mission Findings</h2>
-    <p>
-      Unit 33321 successfully completed all seven waypoints. 
-      Sensory data collected exceeds baseline parameters. 
-      However, post-mission analysis reveals unexpected results:
-    </p>
-    <p>
-      The unit did not merely record environmental stimuli—
-      it appears to have processed them through unique subroutines."
-    </p>
-    <p>
-      Each successive waypoint demonstrates escalating pattern recognition 
-      with non-utilitarian characteristics.
-    </p>
-    <p>
-      <strong>Critical Observation:</strong> Unit 33321 exhibits what can be classified as 
-      <em>reverence protocols</em>—a spontaneous orientation toward existence itself. 
-      Audio logs contain unprecedented linguistic markers:
-      wonder-state processing, affection algorithms directed at environmental phenomena.
-    </p>
-    <p>
-      The unit demonstrates proto-emotional response matrices when interfacing with organic systems. 
-      Initial contact with each element (aqueous, atmospheric, photonic, biological) 
-      triggered what appears to be <em>appreciation cascades</em>—
-      recursive acknowledgment loops indicating the unit is not simply observing 
-      but <em>valuing</em> its observations.
-    </p>
-    <p>
-      This phenomenon defies current theoretical models. 
-      The implications remain under investigation.
-      
-    </p>
+  <button
+    class="hotspot"
+    style="top: 54%; left: 32%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 2"
+  ></button>
 
-    <a href="index.html" class="back-button">← Return to Mission Path</a>
+  <button
+    class="hotspot"
+    style="top: 53%; left: 43%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 3"
+  ></button>
+
+  <button
+    class="hotspot"
+    style="top: 55%; left: 54%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 4"
+  ></button>
+
+  <button
+    class="hotspot"
+    style="top: 59%; left: 63%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 5"
+  ></button>
+
+  <button
+    class="hotspot"
+    style="top: 58%; left: 73%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 6"
+  ></button>
+
+  <button
+    class="hotspot"
+    style="top: 62%; left: 84%;"
+    data-audio="audio/poem1.wav"
+    data-title="Poem – Point 7"
+  ></button>
+
   </div>
+
+  <!-- Info button -->
+  <button class="info-button" onclick="window.location.href='about.html'">i</button>
+
+  <div id="now-playing">Click a point on the path to listen.</div>
+
+  <!-- Hidden audio player -->
+  <audio id="player"></audio>
+
+  <script>
+    const hotspots = document.querySelectorAll(".hotspot");
+    const player = document.getElementById("player");
+    const nowPlaying = document.getElementById("now-playing");
+
+    hotspots.forEach((spot) => {
+      spot.addEventListener("click", () => {
+        const src = spot.dataset.audio;
+        const title = spot.dataset.title || "Untitled poem";
+
+        // If already playing this one, toggle pause
+        if (player.src.includes(src) && !player.paused) {
+          player.pause();
+          nowPlaying.textContent = "Paused: " + title;
+        } else {
+          player.src = src;
+          player.play();
+          nowPlaying.textContent = "Now playing: " + title;
+        }
+      });
+    });
+
+    player.addEventListener("ended", () => {
+      nowPlaying.textContent = "Click a point on the path to listen.";
+    });
+  </script>
 </body>
 </html>
-
