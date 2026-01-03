@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Waypoint 1: Water - Unit 33321</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
+<style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
 
     * {
@@ -14,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Courier Prime', 'Courier New', monospace;
-      background: #ffffff !important;
+      background: #ffffff !important; /* Page remains White */
       color: #d73a49;
       overflow: hidden;
       width: 100vw;
@@ -30,34 +24,27 @@
       background: #ffffff !important;
       width: 100%;
       height: 100%;
+      z-index: 0;
     }
 
     video {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* Keeps aspect ratio */
-      background: #ffffff !important;
+      object-fit: contain; /* Keeps the sphere shape */
       
-      /* --- THE FIX --- */
-      /* Invert creates the "Ink on Paper" look (Black becomes White) */
-      /* Hue-rotate ensures Blue stays Blue (instead of flipping to Orange) */
-      filter: invert(1) hue-rotate(180deg); 
+      /* --- THE MAGIC FIX --- */
+      /* 1. Turn Black background to White, and White particles to Dark Ink */
+      filter: invert(1) hue-rotate(180deg);
+      
+      /* 2. Melt the video edges into the background so you don't see a box */
+      mix-blend-mode: multiply; 
     }
     
-    /* Force everything to white background */
-    * {
-      background-color: transparent; /* Changed from #ffffff to prevent blocking video */
-    }
-    
-    /* Re-apply white background only where needed */
-    body, .video-container {
-      background-color: #ffffff !important;
-    }
-
-    .overlay,
-    .back-button,
-    .audio-status {
-      background-color: rgba(255, 255, 255, 0.95) !important;
+    /* Ensure UI sits on top */
+    .overlay, .back-button, .audio-status {
+      z-index: 10;
+      background-color: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(5px);
     }
 
     .overlay {
@@ -66,8 +53,6 @@
       left: 0;
       right: 0;
       padding: 2rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
-      z-index: 10;
     }
 
     .waypoint-title {
@@ -90,7 +75,7 @@
       bottom: 2rem;
       left: 2rem;
       padding: 0.75rem 1.5rem;
-      background: rgba(0, 92, 197, 0.1);
+      background: rgba(0, 92, 197, 0.05);
       border: 2px solid #005cc5;
       color: #005cc5;
       text-decoration: none;
@@ -98,13 +83,10 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       transition: all 0.2s ease;
-      z-index: 10;
-      backdrop-filter: blur(10px);
     }
 
     .back-button:hover {
-      background: rgba(0, 92, 197, 0.2);
-      box-shadow: 0 0 15px rgba(0, 92, 197, 0.3);
+      background: rgba(0, 92, 197, 0.1);
       transform: translateX(-5px);
     }
 
@@ -113,51 +95,8 @@
       bottom: 2rem;
       right: 2rem;
       padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.95);
       border: 1px solid #005cc5;
       color: #005cc5;
       font-size: 0.85rem;
-      z-index: 10;
-      backdrop-filter: blur(10px);
     }
   </style>
-</head>
-<body>
-  <div class="video-container">
-    <video autoplay loop muted playsinline>
-      <source src="videos/water.mov" type="video/quicktime">
-      <source src="videos/water.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <div class="overlay">
-    <h1 class="waypoint-title">WAYPOINT 1: WATER</h1>
-    <p class="waypoint-subtitle">Sensory Log - Unit 33321</p>
-  </div>
-
-  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
-  
-  <div class="audio-status">AUDIO LOG PLAYING</div>
-
-  <audio id="audio-player" autoplay>
-    <source src="audio/water.wav" type="audio/wav">
-    <source src="audio/water.mp3" type="audio/mpeg">
-  </audio>
-
-  <script>
-    const audio = document.getElementById('audio-player');
-    const status = document.querySelector('.audio-status');
-
-    // Update status when audio ends
-    audio.addEventListener('ended', () => {
-      status.textContent = 'AUDIO LOG COMPLETE';
-    });
-
-    // Handle audio errors
-    audio.addEventListener('error', () => {
-      status.textContent = 'AUDIO LOG ERROR';
-    });
-  </script>
-</body>
-</html>
