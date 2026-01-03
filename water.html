@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Memory 1: Water - Unit 33321</title>
+  <title>Waypoint 1: Water - Unit 33321</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
@@ -17,6 +17,8 @@
       background: #ffffff;
       color: #d73a49;
       overflow: hidden;
+      width: 100vw;
+      height: 100vh;
     }
 
     .video-container {
@@ -25,13 +27,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
+      background: #ffffff;
+      width: 100%;
+      height: 100%;
     }
 
     video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #ffffff;
     }
 
     .overlay {
@@ -44,7 +49,7 @@
       z-index: 10;
     }
 
-    .Memory-title {
+    .waypoint-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 2rem;
       color: #005cc5;
@@ -53,7 +58,7 @@
       margin: 0;
     }
 
-    .Memory-subtitle {
+    .waypoint-subtitle {
       font-size: 1rem;
       color: #6f42c1;
       margin-top: 0.5rem;
@@ -107,8 +112,8 @@
   </div>
 
   <div class="overlay">
-    <h1 class="Memory-title">Memory 1: WATER</h1>
-    <p class="Memory-subtitle">Sensory Log - Unit 33321</p>
+    <h1 class="waypoint-title">WAYPOINT 1: WATER</h1>
+    <p class="waypoint-subtitle">Sensory Log - Unit 33321</p>
   </div>
 
   <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
