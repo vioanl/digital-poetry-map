@@ -1,32 +1,39 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Waypoint 1: Water - Unit 33321</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
 
     * {
       box-sizing: border-box;
     }
 
+    /* 1. Make the main container transparent so we see the video behind it */
     body {
       margin: 0;
       font-family: 'Courier Prime', 'Courier New', monospace;
-      /* Ensure the page background matches the video's white */
-      background: #ffffff !important; 
+      background: transparent !important; 
       color: #d73a49;
       overflow: hidden;
       width: 100vw;
       height: 100vh;
     }
 
+    /* 2. Position Video at the very back (z-index -1) */
     .video-container {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; 
+      background: #ffffff; /* Fallback color if video doesn't load */
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
-      /* Send video to the back so it doesn't cover text */
-      z-index: -1; 
-      background: #ffffff !important;
     }
 
     video {
@@ -34,23 +41,20 @@
       height: 100%;
       object-fit: contain;
       
-      /* --- THE FIX --- */
-      /* 1. Invert: Turns Black background -> White */
-      /* 2. Contrast(1.2): Forces the "dark gray" video background to Pure White */
-      /* 3. Brightness(1.1): Ensures the background is bright enough to merge with the page */
-      filter: invert(1) hue-rotate(180deg) contrast(1.2) brightness(1.1);
-      
-      /* REMOVED mix-blend-mode because it was making your video invisible */
+      /* --- THE FILTER --- */
+      /* Invert: Turns Black background -> White */
+      /* Hue-rotate: Keeps Blue colors Blue (otherwise they flip to orange) */
+      /* Contrast: Boosts the white to remove grey haziness */
+      filter: invert(1) hue-rotate(180deg) contrast(1.2);
     }
     
-    /* UI ELEMENTS */
+    /* UI ELEMENTS (Keep these on top) */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       padding: 2rem;
-      /* Subtle gradient to make text readable */
       background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
       z-index: 10;
     }
@@ -75,7 +79,7 @@
       bottom: 2rem;
       left: 2rem;
       padding: 0.75rem 1.5rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 2px solid #005cc5;
       color: #005cc5;
       text-decoration: none;
@@ -97,10 +101,47 @@
       bottom: 2rem;
       right: 2rem;
       padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid #005cc5;
       color: #005cc5;
       font-size: 0.85rem;
       z-index: 20;
     }
   </style>
+</head>
+<body>
+
+  <div class="video-container">
+    <video autoplay loop muted playsinline>
+      <source src="videos/water.mov" type="video/quicktime">
+      <source src="videos/water.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="overlay">
+    <h1 class="waypoint-title">WAYPOINT 1: WATER</h1>
+    <p class="waypoint-subtitle">Sensory Log - Unit 33321</p>
+  </div>
+
+  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
+  
+  <div class="audio-status">AUDIO LOG PLAYING</div>
+
+  <audio id="audio-player" autoplay>
+    <source src="audio/water.wav" type="audio/wav">
+    <source src="audio/water.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('audio-player');
+    const status = document.querySelector('.audio-status');
+
+    audio.addEventListener('ended', () => {
+      status.textContent = 'AUDIO LOG COMPLETE';
+    });
+    audio.addEventListener('error', () => {
+      status.textContent = 'AUDIO LOG ERROR';
+    });
+  </script>
+</body>
+</html>
