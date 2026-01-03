@@ -4,34 +4,31 @@
   <meta charset="UTF-8" />
   <title>Waypoint 1: Water - Unit 33321</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: 'Courier Prime', 'Courier New', monospace;
       background: #0d0208;
       color: #00ff41;
       overflow: hidden;
     }
 
-    .video-container {
+    #canvas-container {
       position: fixed;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
+      z-index: 1;
     }
 
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    canvas {
+      display: block;
     }
 
     .overlay {
@@ -42,6 +39,7 @@
       padding: 2rem;
       background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
       z-index: 10;
+      pointer-events: none;
     }
 
     .waypoint-title {
@@ -98,13 +96,7 @@
   </style>
 </head>
 <body>
-  <div class="video-container">
-    <!-- Replace with your video file -->
-    <video autoplay loop muted playsinline>
-      <source src="videos/water.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+  <div id="canvas-container"></div>
 
   <div class="overlay">
     <h1 class="waypoint-title">WAYPOINT 1: WATER</h1>
@@ -122,15 +114,126 @@
   </audio>
 
   <script>
+    // P5.js sketch - Flowing ink-blue particle sphere
+    let particles = [];
+    let N = 15000; // Reduced slightly for web performance
+    let R;
+    let t = 0;
+
+    function setup() {
+      let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+      canvas.parent('canvas-container');
+      
+      // Start the sphere relatively small
+      R = min(width, height) * 0.15;
+      
+      for (let i = 0; i < N; i++) {
+        particles.push({
+          pos: randomOnSphere(R),
+          vel: createVector(0, 0, 0)
+        });
+      }
+      
+      background(255);
+    }
+
+    function draw() {
+      // Longer duration trails
+      push();
+      translate(-width/2, -height/2, 0);
+      blendMode(BLEND);
+      noStroke();
+      fill(255, 5); // Very low alpha = long trails
+      rect(0, 0, width, height);
+      pop();
+      
+      // Rotate the whole cloud slowly
+      rotateY(frameCount * 0.005);
+      rotateX(frameCount * 0.002);
+      
+      strokeWeight(1.5);
+      t += 0.008;
+      
+      // Hard wall limit
+      let safeLimit = min(width, height) * 0.45;
+      
+      for (let i = 0; i < N; i++) {
+        let particle = particles[i];
+        
+        // Stronger movement
+        let f = flow(particle.pos, t);
+        particle.vel.add(f);
+        
+        let d = particle.pos.mag();
+        
+        // Looser gravity
+        let holdForce = (R - d) * 0.0004;
+        
+        // Safety check - hard boundary
+        if (d > safeLimit) {
+          holdForce = -0.08;
+          particle.vel.mult(0.80);
+        } else {
+          particle.vel.mult(0.96);
+        }
+        
+        let gravity = particle.pos.copy().normalize().mult(holdForce);
+        particle.vel.add(gravity);
+        
+        particle.pos.add(particle.vel);
+        
+        // Variable alpha based on speed
+        let speed = particle.vel.mag();
+        let a = map(speed, 0, 3, 60, 20);
+        
+        // Ink blue color
+        stroke(10, 42, 99, a);
+        point(particle.pos.x, particle.pos.y, particle.pos.z);
+      }
+    }
+
+    function randomOnSphere(r) {
+      let u = random();
+      let v = random();
+      let theta = TWO_PI * u;
+      let phi = acos(2 * v - 1);
+      let x = r * sin(phi) * cos(theta);
+      let y = r * sin(phi) * sin(theta);
+      let z = r * cos(phi);
+      
+      let jitter = randomGaussian() * 15;
+      let base = createVector(x, y, z);
+      base.normalize();
+      base.mult(r + jitter);
+      return base;
+    }
+
+    function flow(pos, tt) {
+      // Lower scale = larger, sweeping curves
+      let s = 0.004;
+      let time = tt * 0.3;
+      
+      let nx = noise(pos.x * s + time, pos.y * s, pos.z * s) - 0.5;
+      let ny = noise(pos.x * s, pos.y * s + time, pos.z * s) - 0.5;
+      let nz = noise(pos.x * s, pos.y * s, pos.z * s + time) - 0.5;
+      
+      // Strong force
+      return createVector(nx, ny, nz).mult(0.8);
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
+      background(255);
+    }
+
+    // Audio event handlers
     const audio = document.getElementById('audio-player');
     const status = document.querySelector('.audio-status');
 
-    // Update status when audio ends
     audio.addEventListener('ended', () => {
       status.textContent = 'AUDIO LOG COMPLETE';
     });
 
-    // Handle audio errors
     audio.addEventListener('error', () => {
       status.textContent = 'AUDIO LOG ERROR';
     });
