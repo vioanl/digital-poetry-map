@@ -1,180 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Memory 6: Voices - Unit 33321</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
+// MEMORY OF VOICES (VIVID LIME LINE)
+// Processing (Java mode)
 
-    * { box-sizing: border-box; }
+int N = 15000; 
+PVector[] p = new PVector[N];
+PVector[] v = new PVector[N];
+float[] anchorX = new float[N]; // Remembers where each particle belongs on the line
+float t = 0;             
 
-    body {
-      margin: 0;
-      font-family: 'Courier Prime', 'Courier New', monospace;
-      background: #ffffff;
-      color: #32cd32; /* Lime Green Text */
-      overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-    }
-
-    #sketch-container {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; /* Behind text but above background */
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 2rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
-      z-index: 10;
-    }
-
-    .Memory-title {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 2rem;
-      color: #333333; /* Dark Grey Title */
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin: 0;
-    }
-
-    .Memory-subtitle {
-      font-size: 1rem;
-      color: #32cd32; /* Lime Green Subtitle */
-      margin-top: 0.5rem;
-    }
-
-    .back-button {
-      position: fixed;
-      bottom: 2rem;
-      left: 2rem;
-      padding: 0.75rem 1.5rem;
-      background: rgba(50, 205, 50, 0.05);
-      border: 2px solid #32cd32;
-      color: #32cd32;
-      text-decoration: none;
-      font-family: 'Share Tech Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.2s ease;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-
-    .back-button:hover {
-      background: rgba(50, 205, 50, 0.2);
-      box-shadow: 0 0 15px rgba(50, 205, 50, 0.4);
-      transform: translateX(-5px);
-    }
-
-    .audio-status {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid #32cd32;
-      color: #32cd32;
-      font-size: 0.85rem;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-    }
-  </style>
-</head>
-<body>
-
-  <div id="sketch-container"></div>
-
-  <div class="overlay">
-    <h1 class="Memory-title">Memory: VOICES</h1>
-    <p class="Memory-subtitle">Sensory Log - Unit 33321</p>
-  </div>
-
-  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
+void setup() {
+  size(800, 800, P3D);
+  smooth(8);
+  background(255);       
   
-  <div class="audio-status">AUDIO LOG PLAYING</div>
+  // Initialize particles in a straight horizontal line
+  float lineLength = width * 0.8;
+  
+  for (int i = 0; i < N; i++) {
+    // Distribute evenly across the X axis
+    float x = map(i, 0, N, -lineLength/2, lineLength/2);
+    
+    // Add a tiny bit of random spread so it's not a perfect razor line initially
+    p[i] = new PVector(x, random(-2, 2), random(-2, 2));
+    anchorX[i] = x; // Store original X position to tether them
+    v[i] = new PVector();
+  }
+}
 
-  <audio id="audio-player" autoplay>
-    <source src="audio/voices.wav" type="audio/wav">
-    <source src="audio/voices.mp3" type="audio/mpeg">
-  </audio>
+void draw() {
+  // --- AESTHETIC MATCHING ---
+  blendMode(BLEND); 
+  
+  noStroke();
+  // We use a slightly faster fade (60) because voices are twitchy
+  fill(255, 60); 
+  rect(0, 0, width, height);
+  
+  translate(width/2, height/2);
+  
+  // No rotation for Voices - we want to see the waveform clearly
+  // But we can rotate slightly if mouse moves to see the 3D depth
+  // rotateY(map(mouseX, 0, width, -0.5, 0.5)); 
+  
+  t += 0.04; // Very fast time cycle for "jittery" voice movement
+  
+  for (int i = 0; i < N; i++) {
+    
+    // 1. CALCULATE FLOW (The Voice Data)
+    PVector f = voiceFlow(p[i], t);
+    v[i].add(f);
+    
+    // 2. CONSTRAIN TO LINE (The "Memory" Structure)
+    // Pull particle back to its anchor X position (weak pull)
+    float springX = (anchorX[i] - p[i].x) * 0.05;
+    // Pull particle back to Y=0 (center line) but very weakly, allowing vibration
+    float springY = -p[i].y * 0.01; 
+    // Pull particle back to Z=0 (keep it flat-ish)
+    float springZ = -p[i].z * 0.05;
+    
+    PVector gravity = new PVector(springX, springY, springZ);
+    v[i].add(gravity);
+    
+    // 3. PHYSICS UPDATE
+    // Higher friction (0.6) than Wind because voices are sharp/staccato
+    v[i].mult(0.6);      
+    p[i].add(v[i]);
+    
+    // --- COLOR ---
+    // Vivid Lime Green. 
+    // We use (30, 200, 30) instead of pure (0,255,0) so it's visible on White.
+    // Alpha is low (50) to create a glowing effect where particles cluster.
+    stroke(30, 200, 30, 50);      
+    point(p[i].x, p[i].y, p[i].z);
+  }
+}
 
-  <script>
-    let particles = [];
-    let numParticles = 300; // Increased density for smoother line
+// --- HELPERS -------------------------------------------------------------
 
-    function setup() {
-      let canvas = createCanvas(windowWidth, windowHeight);
-      canvas.parent('sketch-container');
-      
-      for (let i = 0; i < numParticles; i++) {
-        particles.push({
-          x: map(i, 0, numParticles, 0, width), // Spread across width
-          baseY: height / 2,
-          offset: random(100), // Random phase
-          speed: random(0.02, 0.08) // Speed of vibration
-        });
-      }
-    }
+PVector voiceFlow(PVector pos, float tt) {
+  // Scale of the noise texture
+  float s = 0.005;        
+  
+  // We want the noise to mostly affect the Y axis (Height/Volume)
+  // The 'pos.x' is used to create the wave shape along the line
+  
+  // Amplitude varies over time (loudness of the voice)
+  float amplitude = (noise(tt * 0.5) * 500) + 50; 
+  
+  // Create a "Wave" force
+  float ny = noise(pos.x * s + tt, tt) - 0.5;
+  
+  // Create some "Grit" (Z axis jitter)
+  float nz = noise(pos.x * 0.1, tt * 2) - 0.5;
+  
+  // The flow pushes wildly up/down, but hardly left/right
+  return new PVector(0, ny * amplitude, nz * 50); 
+}
 
-    function draw() {
-      // Clear background with white (fades previous frame)
-      background(255, 255, 255); 
-
-      noFill();
-      stroke(50, 205, 50); // Vivid Lime Green
-      strokeWeight(2);
-
-      beginShape();
-      
-      // First vertex at left edge
-      vertex(0, height/2);
-
-      for (let i = 0; i < particles.length; i++) {
-        let p = particles[i];
-        
-        // Create complex noise for "Voice-like" waveform
-        // Layer 1: Fast vibration (high pitch)
-        let fastNoise = noise(frameCount * 0.1 + p.offset);
-        // Layer 2: Slow swelling (volume)
-        let slowNoise = noise(frameCount * 0.01 + p.x * 0.01);
-        
-        // Combine them
-        let deviation = map(fastNoise, 0, 1, -100, 100) * slowNoise * 2;
-        
-        // Curve vertex
-        curveVertex(p.x, p.baseY + deviation);
-      }
-      
-      // Last vertex at right edge
-      vertex(width, height/2);
-      
-      endShape();
-    }
-
-    function windowResized() {
-      resizeCanvas(windowWidth, windowHeight);
-      // Reset particle X positions on resize
-      for (let i = 0; i < particles.length; i++) {
-         particles[i].x = map(i, 0, numParticles, 0, width);
-         particles[i].baseY = height / 2;
-      }
-    }
-
-    // Audio status logic
-    const audio = document.getElementById('audio-player');
-    const status = document.querySelector('.audio-status');
-    audio.addEventListener('ended', () => { status.textContent = 'AUDIO LOG COMPLETE'; });
-    audio.addEventListener('error', () => { status.textContent = 'AUDIO LOG ERROR'; });
-  </script>
-</body>
-</html>
+void keyPressed() {
+  if (key == 's' || key == 'S') {
+    saveFrame("voices-####.png");
+  }
+}
