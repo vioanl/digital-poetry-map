@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Waypoint 3: Light - Unit 33321</title>
+  <title>Memory 2: Light - Unit 33321</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
 
@@ -16,13 +15,13 @@
       margin: 0;
       font-family: 'Courier Prime', 'Courier New', monospace;
       background: #ffffff;
-      color: #111111;
+      /* Changed to Dark Grey */
+      color: #333333;
       overflow: hidden;
       width: 100vw;
       height: 100vh;
     }
 
-    /* VIDEO */
     .video-container {
       position: fixed;
       inset: 0;
@@ -42,45 +41,42 @@
       display: block;
     }
 
-    /* TOP OVERLAY */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       padding: 2rem;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.95) 0%,
-        rgba(255,255,255,0) 100%
-      );
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
       z-index: 10;
     }
 
-    .waypoint-title {
+    .Memory-title {
       font-family: 'Share Tech Mono', monospace;
       font-size: 2rem;
-      color: #d4a24c; /* warm radiant gold */
+      /* Changed to Dark Grey */
+      color: #333333;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin: 0;
     }
 
-    .waypoint-subtitle {
+    .Memory-subtitle {
       font-size: 1rem;
-      color: #777777;
+      /* Changed to slightly lighter grey for hierarchy */
+      color: #555555;
       margin-top: 0.5rem;
     }
 
-    /* BACK BUTTON */
     .back-button {
       position: fixed;
       bottom: 2rem;
       left: 2rem;
       padding: 0.75rem 1.5rem;
-      background: rgba(212, 162, 76, 0.12);
-      border: 2px solid #d4a24c;
-      color: #d4a24c;
+      /* Updated styling to Grey theme */
+      background: rgba(51, 51, 51, 0.05);
+      border: 2px solid #333333;
+      color: #333333;
       text-decoration: none;
       font-family: 'Share Tech Mono', monospace;
       text-transform: uppercase;
@@ -91,5 +87,61 @@
     }
 
     .back-button:hover {
-      background: rgba(212, 162, 76, 0.25);
-      box-shadow: 0 0 18px rgba(212, 162, 76, 0.35);
+      background: rgba(51, 51, 51, 0.15);
+      box-shadow: 0 0 15px rgba(51, 51, 51, 0.2);
+      transform: translateX(-5px);
+    }
+
+    .audio-status {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      /* Updated styling to Grey theme */
+      border: 1px solid #333333;
+      color: #333333;
+      font-size: 0.85rem;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay loop muted playsinline>
+      <source src="videos/light.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="overlay">
+    <h1 class="Memory-title">Memory 2: LIGHT</h1>
+    <p class="Memory-subtitle">Sensory Log - Unit 33321</p>
+  </div>
+
+  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
+  
+  <div class="audio-status">AUDIO LOG PLAYING</div>
+
+  <audio id="audio-player" autoplay>
+    <source src="audio/light.wav" type="audio/wav">
+    <source src="audio/light.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('audio-player');
+    const status = document.querySelector('.audio-status');
+
+    // Update status when audio ends
+    audio.addEventListener('ended', () => {
+      status.textContent = 'AUDIO LOG COMPLETE';
+    });
+
+    // Handle audio errors
+    audio.addEventListener('error', () => {
+      status.textContent = 'AUDIO LOG ERROR';
+    });
+  </script>
+</body>
+</html>
