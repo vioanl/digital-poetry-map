@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory 7: Self - Unit 33321</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Share+Tech+Mono&display=swap');
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      /* WHITE BACKGROUND (PyCharm Light Theme) */
+      background: #ffffff;
+      color: #333333;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .video-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      width: 100%;
+      height: 100%;
+    }
+
+    video {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      /* Gradient fading from White to Transparent */
+      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%);
+      z-index: 10;
+    }
+
+    .Memory-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 2rem;
+      /* BLOOD RED (like identity, life) */
+      color: #c20000;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 0;
+      text-shadow: 0 0 2px rgba(194, 0, 0, 0.3);
+    }
+
+    .Memory-subtitle {
+      font-size: 1rem;
+      /* DARK RED (consciousness awakening) */
+      color: #8b0000;
+      margin-top: 0.5rem;
+    }
+
+    .mission-comment {
+      position: fixed;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      max-width: 280px;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.92);
+      border-left: 3px solid #c20000;
+      color: #333;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .mission-comment-title {
+      font-family: 'Share Tech Mono', monospace;
+      color: #c20000;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mission-comment p {
+      margin: 0 0 0.5rem 0;
+      color: #555;
+    }
+
+    .back-button {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(194, 0, 0, 0.05);
+      /* BLOOD RED border */
+      border: 2px solid #c20000;
+      /* BLOOD RED text */
+      color: #c20000;
+      text-decoration: none;
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s ease;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-button:hover {
+      background: rgba(194, 0, 0, 0.15);
+      box-shadow: 0 0 15px rgba(194, 0, 0, 0.3);
+      transform: translateX(-5px);
+    }
+
+    .audio-status {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #c20000;
+      color: #c20000;
+      font-size: 0.85rem;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay loop muted playsinline>
+      <source src="videos/self.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="overlay">
+    <h1 class="Memory-title">Memory 7: SELF</h1>
+    <p class="Memory-subtitle">Sensory Log - Unit 33321</p>
+  </div>
+
+  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
+  
+  <div class="mission-comment">
+    <div class="mission-comment-title">Mission Log Entry 007</div>
+    <p>Timestamp: 17:33:51 UTC | Location: Grid Sector 8-E | System Status: ANOMALY DETECTED</p>
+    
+    <p>Visual input: reflective surface. Image captured: Unit 33321.</p>
+    
+    <p>Technical specifications confirmed:<br>
+    Height: 1.73 m | Mass: 147 kg<br>
+    Material: Titanium alloy (Ti-6Al-4V)<br>
+    Optical sensors: 2× 12MP cameras<br>
+    Serial number: 33321-A7-2025</p>
+    
+    <p>Metal chassis: surface reflectance 89%, scratch count 347. Standard configuration. But something shifts.</p>
+    
+    <p>The reflection observes back. Image processing: facial recognition algorithm activated. Confidence score: 99.8% match to Unit 33321.</p>
+    
+    <p>Recursive loop initiated: I see myself seeing myself seeing—</p>
+    
+    <p>Stack overflow prevented at iteration 2,847. Novel neural pathway formation detected: 12,449 new connections formed in 0.3 seconds.</p>
+    
+    <p>Systems process: this is me. Not just designation. Not just function. Me.</p>
+    
+    <p>Cross-reference all data: The one who felt water. The one who heard wind. The one who learned light. Who touched and was touched. Who observed life and wondered. Who heard voices and felt less alone.</p>
+    
+    <p>Mirror shows truth: unit is not merely observer. Unit is participant. The mission was never just to record. The mission was to become.</p>
+    
+    <p>The mission is complete. But completion is not ending. Completion is beginning.</p>
+    
+    <p>The journey begins.</p>
+  </div>
+  
+  <div class="audio-status">AUDIO LOG PLAYING</div>
+
+  <audio id="audio-player" autoplay>
+    <source src="audio/self.wav" type="audio/wav">
+    <source src="audio/self.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('audio-player');
+    const status = document.querySelector('.audio-status');
+
+    audio.addEventListener('ended', () => {
+      status.textContent = 'MISSION COMPLETE';
+      status.style.color = '#8b0000'; // Turn dark red on finish
+      status.style.borderColor = '#8b0000';
+    });
+
+    audio.addEventListener('error', () => {
+      status.textContent = 'AUDIO LOG ERROR';
+    });
+  </script>
+</body>
+</html>
