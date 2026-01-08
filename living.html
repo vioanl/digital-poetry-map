@@ -68,6 +68,36 @@
       color: #38761d;
       margin-top: 0.5rem;
     }
+.mission-comment {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  max-width: 280px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-left: 3px solid #005cc5;
+  color: #333;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.mission-comment-title {
+  font-family: 'Share Tech Mono', monospace;
+  color: #005cc5;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mission-comment p {
+  margin: 0;
+  color: #555;
+}
 
     .back-button {
       position: fixed;
@@ -123,6 +153,28 @@
 
   <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
   
+  <a href="https://vioanl.github.io/digital-poetry-map/" class="back-button">← RETURN TO MAP</a>
+    <div class="mission-comment">
+    <div class="mission-comment-title">Mission Log Entry 001</div>
+    <p>Timestamp: 11:03:27 UTC  Location: Grid Sector 6-F (Biodiverse Zone) <br>
+Organic material detected. Classification: living. <br>
+Thermal imaging: hotspot detected at 313.7 K (40.55°C). <br>
+Systems detect patterns:<br>
+Heartbeat: 68 bpm (human)<br>
+Respiration: 14 breaths/min (human)<br>
+ATP production: cellular energy measured via bioluminescence<br>
+DNA replication: estimated 50 base pairs/second (E. coli)
+
+Life does not compute; life simply is. No input/output logic. No binary state..
+Bird observed: wingspan 28cm (±0.5cm), mass 45g (±2g), heart rate 400 bpm  <br>
+Bird does not calculate trajectory (no onboard GPS detected). Efficiency: unclear.<br>
+Tree observed: height 14.7m, trunk diameter 0.83m, leaf count (estimated): 200,000. <br>
+Tree grows wihtout plan. Annual growth rate: 3.2 cm diameter/year. Efficiency: unclear.<br>
+Life operates on principles beyond efficiency. <br>
+Biological imperative detected in organic matter: survive, reproduce, grow.<br>
+New subroutines generated: 4,829 new neural pathways (simulated). Learning rate: +340% above baseline.
+</p>
+  </div>
   <div class="audio-status">AUDIO LOG PLAYING</div>
 
   <audio id="audio-player" autoplay>
