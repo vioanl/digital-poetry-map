@@ -62,7 +62,38 @@
       color: #32cd32; /* Lime Green Subtitle */
       margin-top: 0.5rem;
     }
+    .mission-comment {
+      position: fixed;
+      top: 50%;
+      left: 2rem;
+      transform: translateY(-50%);
+      max-width: 280px;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.92);
+      border-left: 3px solid #c20000;
+      color: #333333;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
 
+    .mission-comment-title {
+      font-family: 'Share Tech Mono', monospace;
+      color: #333333;
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mission-comment p {
+      margin: 0 0 0.5rem 0;
+      color: #32cd32;
+    }
     .back-button {
       position: fixed;
       bottom: 2rem;
