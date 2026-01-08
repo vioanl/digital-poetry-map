@@ -64,6 +64,50 @@
       color: #6f42c1;
       margin-top: 0.5rem;
     }
+    <!-- Add this CSS inside the <style> tag, after .Memory-subtitle -->
+
+.mission-comment {
+  position: fixed;
+  top: 50%;
+  left: 2rem;
+  transform: translateY(-50%);
+  max-width: 280px;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-left: 3px solid #005cc5;
+  color: #333;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.mission-comment-title {
+  font-family: 'Share Tech Mono', monospace;
+  color: #005cc5;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.mission-comment p {
+  margin: 0;
+  color: #555;
+}
+
+@media (max-width: 900px) {
+  .mission-comment {
+    position: fixed;
+    top: auto;
+    bottom: 6rem;
+    left: 2rem;
+    right: 2rem;
+    max-width: none;
+    transform: none;
+  }
+}
 
     .back-button {
       position: fixed;
