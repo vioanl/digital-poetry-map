@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>Digital Poetry Sound Map</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -12,27 +13,106 @@
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: ##2b2b2b; /;
+      background: #2b2b2b;
       color: #fff;
-      overflow: hidden; /* no scrollbars */
+      overflow: hidden;
     }
 
     /* MAP FULLSCREEN */
     .map-container {
       position: fixed;
-      inset: 0; /* top/right/bottom/left = 0 */
+      inset: 0;
       overflow: hidden;
     }
 
     .map-container img {
       width: 100%;
       height: 100%;
-      /* object-fit: cover; */
-      object-position: center 40%; 
+      object-position: center 40%;
       display: block;
     }
 
-    /* HOTSPOTS */
+    /* ─── TITLE OVERLAY ─────────────────────────────────── */
+    .title-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 2.8rem 3.2rem;
+      z-index: 10;
+      pointer-events: none;
+
+      /* soft vignette so text is legible over any background */
+      background: radial-gradient(
+        ellipse 70% 80% at 0% 0%,
+        rgba(0, 0, 0, 0.55) 0%,
+        transparent 100%
+      );
+
+      /* fade + slight upward drift on load */
+      opacity: 0;
+      transform: translateY(10px);
+      animation: titleReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+    }
+
+    @keyframes titleReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* thin decorative rule above */
+    .title-rule {
+      width: 40px;
+      height: 1px;
+      background: rgba(255, 220, 80, 0.6);
+      margin-bottom: 1.2rem;
+    }
+
+    .title-main {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      color: #ffd84a;
+      margin: 0 0 0.6rem;
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+      max-width: 480px;
+    }
+
+    .title-subtitle {
+      font-family: "Cormorant SC", Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(0.6rem, 1vw, 0.78rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255, 216, 74, 0.7);
+      margin: 0 0 1.6rem;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* thin rule between subtitle and author */
+    .title-divider {
+      width: 24px;
+      height: 1px;
+      background: rgba(255, 216, 74, 0.4);
+      margin-bottom: 0.8rem;
+    }
+
+    .title-author {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 216, 74, 0.6);
+      margin: 0;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ─── HOTSPOTS ──────────────────────────────────────── */
     .hotspot {
       position: absolute;
       width: 32px;
@@ -110,60 +190,24 @@
 </head>
 <body>
   <div class="map-container">
-
-    <!-- CHANGE src IF YOUR FILE HAS A DIFFERENT NAME -->
     <img src="images/map.png" alt="Digital poetry sound map" />
 
-    <!-- 7 HOTSPOTS ALONG THE PATH – each links to its own page -->
-    <button
-    class="hotspot"
-    style="top: 61%; left: 23%;"
-    onclick="window.location.href='water.html'"
-    data-title="Waypoint 1: Water"
-    ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 54%; left: 32%;"
-    onclick="window.location.href='wind.html'"
-    data-title="Waypoint 2: Wind"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 53%; left: 43%;"
-    onclick="window.location.href='light.html'"
-    data-title="Waypoint 3: Light"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 55%; left: 54%;"
-    onclick="window.location.href='texture.html'"
-    data-title="Waypoint 4: Texture"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 59%; left: 63%;"
-    onclick="window.location.href='living.html'"
-    data-title="Waypoint 5: Living Things"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 58%; left: 73%;"
-    onclick="window.location.href='voices.html'"
-    data-title="Waypoint 6: Human Voices"
-  ></button>
-  
-  <button
-    class="hotspot"
-    style="top: 62%; left: 84%;"
-    onclick="window.location.href='self.html'"
-    data-title="Waypoint 7: Self-Recognition"
-  ></button>
+    <button class="hotspot" style="top: 61%; left: 23%;" onclick="window.location.href='water.html'" data-title="Waypoint 1: Water"></button>
+    <button class="hotspot" style="top: 54%; left: 32%;" onclick="window.location.href='wind.html'" data-title="Waypoint 2: Wind"></button>
+    <button class="hotspot" style="top: 53%; left: 43%;" onclick="window.location.href='light.html'" data-title="Waypoint 3: Light"></button>
+    <button class="hotspot" style="top: 55%; left: 54%;" onclick="window.location.href='texture.html'" data-title="Waypoint 4: Texture"></button>
+    <button class="hotspot" style="top: 59%; left: 63%;" onclick="window.location.href='living.html'" data-title="Waypoint 5: Living Things"></button>
+    <button class="hotspot" style="top: 58%; left: 73%;" onclick="window.location.href='voices.html'" data-title="Waypoint 6: Human Voices"></button>
+    <button class="hotspot" style="top: 62%; left: 84%;" onclick="window.location.href='self.html'" data-title="Waypoint 7: Self-Recognition"></button>
+  </div>
 
+  <!-- ─── TITLE CARD ─────────────────────────────────────── -->
+  <div class="title-overlay">
+    <div class="title-rule"></div>
+    <h1 class="title-main">A human forgets<br/>its first walk</h1>
+    <p class="title-subtitle">Unit 33321 &nbsp;·&nbsp; a memory under the sun</p>
+    <div class="title-divider"></div>
+    <p class="title-author">Valsamara Ioanna</p>
   </div>
 
   <!-- Info button -->
@@ -171,7 +215,6 @@
 
   <div id="now-playing">Click a point on the path to listen.</div>
 
-  <!-- Hidden audio player -->
   <audio id="player"></audio>
 
   <script>
@@ -184,7 +227,6 @@
         const src = spot.dataset.audio;
         const title = spot.dataset.title || "Untitled poem";
 
-        // If already playing this one, toggle pause
         if (player.src.includes(src) && !player.paused) {
           player.pause();
           nowPlaying.textContent = "Paused: " + title;
@@ -202,6 +244,3 @@
   </script>
 </body>
 </html>
-
-
-
