@@ -359,10 +359,17 @@ body {
   padding: 1.2rem 1.5rem;
   background: var(--glass);
   border-left: 2px solid var(--gold);
-  font-style: italic;
+  font-style: normal;
   font-size: 0.93rem;
   color: #c8c0b6;
   line-height: 1.9;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+}
+/* English quotes get italic — Latin fonts handle it well */
+#lang-en .piece-quote {
+  font-style: italic;
+  font-weight: 200;
 }
 .piece-quote cite {
   display: block;
@@ -485,15 +492,15 @@ body {
 <!-- HERO -->
 <section class="hero">
   <div class="hero-top">
-    <div class="hero-eyebrow">6daEXIt Improvisation Ensemble — Θεσσαλονίκη 2026</div>
+    <div class="hero-eyebrow" id="hero-eyebrow">6daEXIt Improvisation Ensemble — Θεσσαλονίκη 2026</div>
     <h1 class="hero-title">
       PREMIERES<br>
-      <em></em>
+      <em id="hero-subtitle">Παγκόσμιες Πρεμιέρες</em>
     </h1>
   </div>
   <div class="hero-bottom">
-    <div class="hero-meta"><strong>Ημερομηνία</strong><br>Παρασκευή<br>17 Απριλίου 2026</div>
-    <div class="hero-meta"><strong>Συνθέτες</strong><br>lo wie · Andrew Weathers<br>Kevin Corcoran · Anton Lukoszevieze</div>
+    <div class="hero-meta"><strong id="hero-label-date">Ημερομηνία</strong><br><span id="hero-date">Παρασκευή<br>17 Απριλίου 2026</span></div>
+    <div class="hero-meta"><strong id="hero-label-comp">Συνθέτες</strong><br>lo wie · Andrew Weathers<br>Kevin Corcoran · Anton Lukoszevieze</div>
   </div>
   <div class="scroll-cue"><span>scroll</span><div class="scroll-line"></div></div>
 </section>
@@ -504,12 +511,12 @@ body {
 <section class="s-transparent">
   <div class="inner reveal">
     <div class="s-label">Παρουσίαση</div>
-    <p class="intro-body">Οι <strong>6daEXIt Improvisation Ensemble</strong> παρουσιάζουν 4 έργα σύγχρονης πειραματικής μουσικής. Τα έργα αυτά προέρχονται από κάλεσμα για έργα γραφικής και λεκτικής σημειογραφίας σε συγκεκριμένους συνθέτες απ’ όλον τον κόσμο και θα εκτελεστούν εδώ για δεύτερη φορά μετά από την παγκόσμια πρεμιέρα τους στη συναυλία των 6daEXIt στο ΚΕΤ (Αθήνα, 17-3-2026). 3 από αυτά μάλιστα γράφτηκαν ειδικά για τους 6daEXIt.
+    <p class="intro-body">Οι <strong>6daEXIt Improvisation Ensemble</strong>  παρουσιάζουν 4 έργα σύγχρονης πειραματικής μουσικής. Τα έργα αυτά προέρχονται από κάλεσμα για έργα <strong>γραφικής και λεκτικής σημειογραφίας <strong>σε συγκεκριμένους συνθέτες απ’ όλον τον κόσμο και θα εκτελεστούν εδώ για δεύτερη φορά μετά από την <strong>παγκόσμια πρεμιέρα <strong>τους στη συναυλία των 6daEXIt στο ΚΕΤ (Αθήνα, 17-3-2026). 3 από αυτά μάλιστα γράφτηκαν ειδικά για τους 6daEXIt.
 
 Το σύνολο εστιάζει σε έργα ανοιχτής μορφής, τα οποία επαναπροσδιορίζουν τη σχέση συνθέτη, εκτελεστή και αποδέκτη. Η παρτιτούρα δεν είναι ένα τελικό διάγραμμα με προκαθορισμένες νότες, αλλά ένα σύνολο από κανόνες ή προθέσεις, στρατηγικές και ερεθίσματα που μπορούν να αντιστοιχηθούν σε δράσεις λιγότερο ή περισσότερο καθορισμένες. Τα έργα δημιουργούν έτσι το πλαίσιο δράσης και αντίληψης - ένα παράδειγμα είναι το κομμάτι -6-, το οποίο διαμορφώνεται ως επιτέλεση καθ' όλη τη διάρκεια της συναυλίας, δημιουργώντας ένα πλαίσιο που περιλαμβάνει μέσα του οτιδήποτε άλλο, χωρίς να το επικαλύπτει με ορατό τρόπο.
 
 Η τελική μορφή των έργων παραμένει ρευστή και δημιουργείται σε πραγματικό χρόνο από το σύνολο, καθιστώντας κάθε εκτέλεση μια μοναδική, μη επαναλήψιμη ηχητική εκδοχή, μέσα από την αλληλεπίδραση και την ακρόαση. Οι πρακτικές αυτές προσεγγίζουν τον κοινό τόπο ανάμεσα στην έννοια του έργου και του μερικώς ελεγχόμενου ελεύθερου - μη ιδιωματικού - αυτοσχεδιασμού.
-</p>
+.</p>
   </div>
 </section>
 
@@ -522,10 +529,10 @@ body {
       <li class="prog-item"><div class="prog-num">01</div><div><div class="prog-title-text">-6-</div><div class="prog-composer-text">lo wie, 2025</div></div><div class="prog-flag">* **</div></li>
       <li class="prog-item"><div class="prog-num">02</div><div><div class="prog-title-text">Reverse Horizon</div><div class="prog-composer-text">Andrew Weathers, 2025</div></div><div class="prog-flag">*</div></li>
       <li class="prog-item"><div class="prog-num">03</div><div><div class="prog-title-text">Figure Ground</div><div class="prog-composer-text">Kevin Corcoran, 2025</div></div><div class="prog-flag">*</div></li>
-      <li class="prog-item"><div class="prog-num">04</div><div><div class="prog-title-text">Lost Operas: page 4</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">05</div><div><div class="prog-title-text">Lost Operas: page 13</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">06</div><div><div class="prog-title-text">Lost Operas: page 6</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">07</div><div><div class="prog-title-text">Lost Operas: page 7</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">04</div><div><div class="prog-title-text">Lost Opera 4</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">05</div><div><div class="prog-title-text">Lost Operas 13</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">06</div><div><div class="prog-title-text">Lost Operas 6</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">07</div><div><div class="prog-title-text">Lost Operas 7</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
     </ul>
     <div class="legend-box">
       <p>* Έργο γραμμένο για τους 6daEXIt</p>
@@ -570,7 +577,9 @@ body {
     </div>
     <div class="piece-block">
       <div class="piece-header"><div class="piece-name">Figure Ground</div><div class="piece-composer-tag">Kevin Corcoran · 2025</div></div>
-      <div class="piece-body"><div class="piece-quote">«Το Figure Ground ξεκινά με έναν ηχητικό περίπατο ως μια ενσώματη πρακτική ηχογράφησης πεδίου, η οποία μεταγράφεται σε μουσική παρτιτούρα για εκτέλεση από σύνολο. Κατά τη διάρκεια του περιπάτου, γραμμικές χαράξεις που γίνονται βαδίζοντας σε ποικίλα εδάφη με πένα και χαρτί στο χέρι, συνοδεύονται από φωτογραφίες που αποτυπώνουν την υλικότητα της πέτρας, του χώματος, της οργανικής ύλης. Το Figure Ground συνδυάζει αισθητικές πρακτικές περιβαλλοντικής ακρόασης, παραγωγής ήχου και ηχογράφησης, με την εκτέλεση πειραματικής μουσικής.»<cite>— Kevin Corcoran, 2026</cite></div></div>
+      <div class="piece-body"><div class="piece-quote">«Το Figure Ground Το Figure Ground ξεκινά με έναν ηχητικό περίπατο ως μια ενσώματη πρακτική ηχογράφησης πεδίου, η οποία μεταγράφεται σε μουσική παρτιτούρα για εκτέλεση από σύνολο. Κατά τη διάρκεια του περιπάτου, γραμμικές χαράξεις που γίνονται βαδίζοντας σε ποικίλα εδάφη με πένα και χαρτί στο χέρι, συνοδεύονται από φωτογραφίες που αποτυπώνουν την υλικότητα της πέτρας, του χώματος, της οργανικής ύλης του εδάφους, του ξύλου και της άμμου που διασχίζονται. Οι χαράξεις και οι εικόνες παίρνουν τη θέση της ηχητικής εγγραφής, προκειμένου η ακρόαση να βιωθεί ως μια πρακτική που γίνεται αισθητή ως δόνηση σε ολόκληρο το σώμα και δεν περιορίζεται στην αντίληψη μέσω του τυμπάνου του αυτιού. Ως μουσική παρτιτούρα, αυτές οι γραμμές λειτουργούν ως προτάσεις για το παίξιμο ενός οργάνου με ανοιχτό τρόπο (όπως η χρήση διευρυμένων τεχνικών ή αντικειμένων) και ως οδηγίες για τη διάσχιση του χώρου της επιτέλεσης μεταφέροντας ένα μουσικό όργανο. Οι φωτογραφίες που απεικονίζουν τις τραχιές, λεπτές και λείες ποιότητες του εδάφους, τη σύνθεση του εδάφους από την οποία αναδύονται οι γραμμικές μορφές του περιπάτου, γίνονται οπτικές υποβολές για μουσικά ηχοχρώματα. Αυτές οι οπτικές πτυχές της παρτιτούρας συνοδεύονται από σύντομα κείμενα που περιγράφουν τις προσεγγίσεις της διαδρομής, δίνοντας τον τόνο για μουσικές αποφάσεις που αφορούν τον ρυθμό, την πρόσβαση, την ισορροπία και την αλληλεπίδραση.
+
+Το Figure Ground συνδυάζει αισθητικές πρακτικές περιβαλλοντικής ακρόασης, παραγωγής ήχου και ηχογράφησης, με την εκτέλεση πειραματικής μουσικής. Η σύνθεση προσφέρει μια ανοιχτή φόρμα για τη μεταγραφή του γεγονότος και της εμπειρίας, αντί να βασίζεται σε δείγματα ηχογραφήσεων πεδίου, προκειμένου να μεταδώσει τις ποιότητες του τόπου και μια πολυαισθητηριακή επέκταση της ακρόασης.»<cite>— Kevin Corcoran, 2026</cite></div></div>
     </div>
     <div class="piece-block">
       <div class="piece-header"><div class="piece-name">Lost Operas</div><div class="piece-composer-tag">Anton Lukoszevieze · 2024</div></div>
@@ -586,9 +595,10 @@ body {
     <div class="s-label">Σχετικά με τους συνθέτες</div>
     <div class="composer-grid">
       <div class="composer-card"><div class="c-name">lo wie</div><div class="c-bio">Η lo wie συνθέτει, ερμηνεύει και γράφει μέσα στο πλαίσιο της καθημερινότητας. Έγραψε τα «Beckett's Typist» (2011) και «Letter from Nobody» (2025), ενώ διοργανώνει τη σειρά υπαίθριων συναυλιών 〈namsan〉 από το 2014.</div></div>
-      <div class="composer-card"><div class="c-name">Andrew Weathers</div><div class="c-bio">Ο Andrew Weathers (1988) είναι συνθέτης, αυτοσχεδιαστής και διαμεσικός καλλιτέχνης που εδρεύει στο Πουέμπλο του Κολοράντο. Το 2008 ίδρυσε τη Full Spectrum Records. Μετά από 16 χρόνια και 175 κυκλοφορίες, ολοκλήρωσε τον κύκλο της το 2024. Σήμερα επιμελείται τις δισκογραφικές Editions Glomar και Bastard Countryside.</div></div>
-      <div class="composer-card"><div class="c-name">Kevin Corcoran</div><div class="c-bio">Ο Kevin Corcoran εργάζεται με τον ήχο μέσω των κρουστών και των ηχογραφήσεων πεδίου. Με έδρα το Σαν Φρανσίσκο, η προσέγγισή του δίνει έμφαση στην υφή, την τριβή, τη συμπαθητική δόνηση. Ενεργός από τις αρχές της δεκαετίας του 2000, έχει εμφανιστεί στις ΗΠΑ, UK, Μεξικό, Ευρώπη και Ανατολική Ασία.</div></div>
-      <div class="composer-card"><div class="c-name">Anton Lukoszevieze</div><div class="c-bio">Απόγονος ενός υποχωρούντος στρατιώτη του Ναπολέοντα και μιας Λιθουανής ευγενούς. Τσελίστας, συνθέτης, αυτοσχεδιαστής και διεπιστημονικός καλλιτέχνης. Ιδρυτής και διευθυντής του Apartment House, με πάνω από 60 άλμπουμ.</div></div>
+      <div class="composer-card"><div class="c-name">Andrew Weathers</div><div class="c-bio">Ο Andrew Weathers (1988) είναι συνθέτης, αυτοσχεδιαστής και διαμεσικός καλλιτέχνης που εδρεύει στο Πουέμπλο του Κολοράντο, μετά από μια διαμορφωτική περίοδο στο Δυτικό Τέξας, το Bay Area και τη Βόρεια Καρολίνα. Το έργο του επικεντρώνεται κυρίως στον τόπο, τη διάρκεια και την επανάληψη, στοιχεία που εξερευνά μέσω ηχογραφήσεων πεδίου, ψυχογεωγραφικών μεθόδων και αναδρομικών αντηχήσεων. Έχει συνεργαστεί με ένα ευρύ φάσμα καλλιτεχνών που δραστηριοποιούνται σε ετερόκλητα ρεύματα μέσων, προσεγγίσεων και αισθητικής. Το 2008, ο Weathers ίδρυσε τη Full Spectrum Records, ξεκινώντας μια μακροχρόνια δέσμευση στην παραγωγή και την επιμέλεια, που επεκτάθηκε σε μια σειρά από πρότζεκτ για τις εταιρείες Other Minds Records και Rural Situationism. Μετά από 16 χρόνια και 175 κυκλοφορίες, η Full Spectrum ολοκλήρωσε τον κύκλο της το 2024. Σήμερα επιμελείται τις δισκογραφικές Editions Glomar και Bastard Countryside, ενώ συνεχίζει να εργάζεται ως παραγωγός και μηχανικός ήχου.</div></div>
+      <div class="composer-card"><div class="c-name">Kevin Corcoran</div><div class="c-bio">Ο Kevin Corcoran εργάζεται με τον ήχο μέσω των κρουστών και των ηχογραφήσεων πεδίου σε πλαίσια μουσικής, τέχνης και τόπου. Με έδρα το Σαν Φρανσίσκο της Καλιφόρνια, η προσέγγισή του στα κρουστά δίνει έμφαση στην υφή, την τριβή, τη συμπαθητική δόνηση και τη χρήση αντικειμένων, τα οποία περιστασιακά εμπλουτίζονται μέσω ενίσχυσης, μετάδοσης και ανάδρασης. Συνεργαζόμενος με μουσικούς, χορευτές και εικαστικούς, ο αυτοσχεδιασμός και η συνεργασία αποτελούν κρίσιμες πτυχές της πρακτικής του. Ενεργός από τις αρχές της δεκαετίας του 2000, έχει εμφανιστεί στις ΗΠΑ, το Ηνωμένο Βασίλειο, το Μεξικό, την Ευρώπη και την Ανατολική Ασία, έχει εκθέσει ηχητικές εγκαταστάσεις και έχει κυκλοφορήσει άλμπουμ σε μικρές δισκογραφικές πειραματικής μουσικής.</div></div>
+      <div class="composer-card"><div class="c-name">Anton Lukoszevieze</div><div class="c-bio">Απόγονος ενός υποχωρούντος στρατιώτη του Ναπολέοντα και μιας Λιθουανής ευγενούς, ο Anton Lukoszevieze είναι τσελίστας, συνθέτης, αυτοσχεδιαστής και διεπιστημονικός καλλιτέχνης. Είναι επίσης ο ιδρυτής και διευθυντής του πειραματικού μουσικού συνόλου Apartment House, έχοντας κυκλοφορήσει μαζί τους πάνω από 60 άλμπουμ μέχρι σήμερα. Το πιο πρόσφατο σόλο άλμπουμ του είναι το «Le Jardin des Plantes’» από την εταιρεία The Trilogy Tapes (Ηνωμένο Βασίλειο).
+</div></div>
     </div>
   </div>
 </section>
@@ -613,9 +623,9 @@ body {
 <section class="s-transparent">
   <div class="inner reveal">
     <div class="s-label">About the concert</div>
-    <p class="intro-body"><strong>6daEXIt Improvisation Ensemble</strong> presents four works of contemporary experimental music. These pieces resulted from a call for scores—specifically for graphic and verbal notation—issued to composers from around the world, and will be performed here for the second time after their world premiere at 6daEXIt’s concert at KET (Athens, 17-4-2026). Three of these works were written specifically for 6daEXIt.
+    <p class="intro-body"><strong>6daEXIt Improvisation Ensemble</strong> 6daEXIt Improvisation Ensemble presents four works of contemporary experimental music. These pieces resulted from a call for scores—specifically for <strong>graphic and verbal notation—issued <strong>to composers from around the world, and will be performed here for the second time after their <strong>world premiere <strong>at 6daEXIt’s concert at KET (Athens, 17-4-2026). Three of these works were written specifically for 6daEXIt.
 
-The ensemble focuses on open-form works that redefine the relationship between composer, performer and listener. In this context, the score is not a final blueprint of predetermined notes, but rather a set of rules, intentions, strategies, and stimuli that correspond to actions of varying degrees of specificity. These works thus establish a framework for action and perception—a prime example being the piece -6-, which unfolds as a continuous enactment throughout the concert, creating a context that encompasses all other events without overtly masking them.
+The ensemble focuses on open-form works that redefine the relationship between composer, performer, and listener. In this context, the score is not a final blueprint of predetermined notes, but rather a set of rules, intentions, strategies, and stimuli that correspond to actions of varying degrees of specificity. These works thus establish a framework for action and perception—a prime example being the piece -6-, which unfolds as a continuous enactment throughout the concert, creating a context that encompasses all other events without overtly masking them.
 
 The final form of each work remains fluid, shaped in real-time by the ensemble. Through active listening and interaction, every performance becomes a unique, unrepeatable sonic iteration. These practices explore the common ground between the concept of a composed work and partially controlled free—non-idiomatic—improvisation.</p>
   </div>
@@ -630,10 +640,10 @@ The final form of each work remains fluid, shaped in real-time by the ensemble. 
       <li class="prog-item"><div class="prog-num">01</div><div><div class="prog-title-text">-6-</div><div class="prog-composer-text">lo wie, 2025</div></div><div class="prog-flag">* **</div></li>
       <li class="prog-item"><div class="prog-num">02</div><div><div class="prog-title-text">Reverse Horizon</div><div class="prog-composer-text">Andrew Weathers, 2025</div></div><div class="prog-flag">*</div></li>
       <li class="prog-item"><div class="prog-num">03</div><div><div class="prog-title-text">Figure Ground</div><div class="prog-composer-text">Kevin Corcoran, 2025</div></div><div class="prog-flag">*</div></li>
-      <li class="prog-item"><div class="prog-num">04</div><div><div class="prog-title-text">Lost Operas: page 4</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">05</div><div><div class="prog-title-text">Lost Operas: page 13</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">06</div><div><div class="prog-title-text">Lost Operas: page 6</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
-      <li class="prog-item"><div class="prog-num">07</div><div><div class="prog-title-text">Lost Operas: page 7</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">04</div><div><div class="prog-title-text">Lost Opera 4</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">05</div><div><div class="prog-title-text">Lost Operas 13</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">06</div><div><div class="prog-title-text">Lost Opera 6</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
+      <li class="prog-item"><div class="prog-num">07</div><div><div class="prog-title-text">Lost Operas 7</div><div class="prog-composer-text">Anton Lukoszevieze, 2024</div></div><div class="prog-flag"></div></li>
     </ul>
     <div class="legend-box">
       <p>* Work written for 6daEXIt</p>
@@ -678,11 +688,15 @@ The final form of each work remains fluid, shaped in real-time by the ensemble. 
     </div>
     <div class="piece-block">
       <div class="piece-header"><div class="piece-name">Figure Ground</div><div class="piece-composer-tag">Kevin Corcoran · 2025</div></div>
-      <div class="piece-body"><div class="piece-quote">"Figure Ground begins with a soundwalk as an embodied practice of field recording which is transcribed into musical score for ensemble performance. During the soundwalk, linear inscriptions made by walking over varied terrain with pen and paper in hand are accompanied by photographs detailing the materiality of stone, soil, duff, wood, and sand. Figure Ground combines aesthetic practices of environmental listening, sound-making, and recording, with the performance of experimental music."<cite>— Kevin Corcoran, 2026</cite></div></div>
+      <div class="piece-body"><div class="piece-quote">""Figure Ground begins with a soundwalk as an embodied practice of field recording which is transcribed into musical score for ensemble performance. During the soundwalk, linear inscriptions made by walking over varied terrain with pen and paper in hand are accompanied by photographs detailing the materiality of stone, soil, duff, wood, and sand traversed over ground. The inscriptions and images take the place of audio field recording in order to experience listening as a practice felt as vibration throughout the body, not limited to perception through the eardrum. As a musical score, these lines become suggestions for playing an instrument in an open way, such as the use of extended techniques or found objects, and traversing the performance space while carrying an instrument. The photographs detailing coarse, fine, and smooth qualities of terrain, composition of the ground from which the soundwalk’s linear figures emerge, become visual suggestions for musical timbres. These visual aspects of the score are accompanied by short texts describing approaches of the walk, setting a tone for musical decisions of pacing, access, balance, and interaction.
+
+Figure Ground combines aesthetic practices of environmental listening, sound-making, and recording, with the performance of experimental music. The composition offers an open form for transcription of event and experience, rather than relying on samples of field recordings, to convey qualities of place and a multisensory expansion of listening."<cite>— Kevin Corcoran, 2026</cite></div></div>
     </div>
     <div class="piece-block">
       <div class="piece-header"><div class="piece-name">Lost Operas</div><div class="piece-composer-tag">Anton Lukoszevieze · 2024</div></div>
-      <div class="piece-body">Created between 2015 and 2023, these 17 graphic scores consist of collages and sketches, selected from a total of 256 pages. Four of these will be premiered at this concert.<div class="piece-quote">"Lost Operas number some 256 single page works, which can be performed or interpreted in many different ways. There are no exact instructions for each opera, except for that the performance should create something new — not just a general improvisation, but something that has a new form, structure and combination of musical and concrete sounds, intuitively or pre-determined, using any means."<cite>— Anton Lukoszevieze, 2026</cite></div></div>
+      <div class="piece-body">Created between 2015 and 2023, these 17 graphic scores consist of collages and sketches, selected from a total of 256 pages. Four of these will be premiered at this concert.<div class="piece-quote">"Lost Operas number some 256 single page works, which can be performed or interpreted in many different ways.
+There are no exact instructions for each opera, except for that the performance should create something new, not just a general improvisation, but something that has a new form, structure and combination of musical and concrete sounds, intuitively or pre-determined, using any means. The word opera comes from the Italian work opere, meaning ‘works’." 
+<cite>— Anton Lukoszevieze, 2026</cite></div></div>
     </div>
   </div>
 </section>
@@ -694,9 +708,9 @@ The final form of each work remains fluid, shaped in real-time by the ensemble. 
     <div class="s-label">About the composers</div>
     <div class="composer-grid">
       <div class="composer-card"><div class="c-name">lo wie</div><div class="c-bio">lo wie composes, performs, and writes within everyday life. She wrote Beckett's Typist (2011), Letter from Nobody (2025) and has been organizing the outdoor concert series 〈namsan〉 since 2014.</div></div>
-      <div class="composer-card"><div class="c-name">Andrew Weathers</div><div class="c-bio">Andrew Weathers (1988) is a composer, improviser, and intermedia artist based in Pueblo, Colorado. In 2008, he founded Full Spectrum Records; after 16 years and 175 releases, it came to an end in 2024. He currently curates Editions Glomar and Bastard Countryside.</div></div>
-      <div class="composer-card"><div class="c-name">Kevin Corcoran</div><div class="c-bio">Kevin Corcoran works with sound through percussion and location recordings in contexts of music, art, and place. Based in San Francisco, his approach emphasizes texture, friction, sympathetic vibration, and found objects. Active since the early 2000s across the US, UK, Mexico, Europe and East Asia.</div></div>
-      <div class="composer-card"><div class="c-name">Anton Lukoszevieze</div><div class="c-bio">Descended from a retreating Napoleonic soldier and a Lithuanian noblewoman. Cellist, composer, improviser, and multidisciplinary artist. Founder and director of Apartment House, releasing over 60 albums to date.</div></div>
+      <div class="composer-card"><div class="c-name">Andrew Weathers</div><div class="c-bio">Andrew Weathers (1988) is a composer, improviser, and intermedia artist currently based in the Pueblo, Colorado after spending forative time in West Texas, the Bay Area, and North Carolina. His work is primarily concerned with place, duration, and repetition, explored through field recording, psychogeographic methods, and recursive resonances. Weathers has collaborated alongside a wide swath of artists inhabiting disparate currents of media, approaches, and aesthetics.In 2008, Weathers founded Full Spectrum Records, beginning a long-standing commitment to production and curation that went on to encompass a number of projects for Other Minds Records and Rural Situationism. After 16 years and 175 releases, Full Spectrum came to an end in 2024. He currently curates the imprints Editions Glomar and Bastard Countryside and continues to work as an in-demand producer and audio engineer.</div></div>
+      <div class="composer-card"><div class="c-name">Kevin Corcoran</div><div class="c-bio">Kevin Corcoran works with sound through percussion and location recordings in contexts of music, art, and place. Based in San Francisco, California, his approach to percussion emphasizes texture, friction, sympathetic vibration, and the use of found objects, occasionally augmented by amplification, transmission, and feedback. Working with musicians, dancers, and visual artists, improvisation and collaboration are crucial aspects of his practice. Active since the early 2000s Kevin has performed in the US, UK, Mexico, Europe and East Asia, exhibited sound installations, and released albums on small imprints dedicated to experimental music.</div></div>
+      <div class="composer-card"><div class="c-name">Anton Lukoszevieze</div><div class="c-bio">Descended from a retreating Napoleonic soldier and a Lithuanian noblewoman, Anton Lukoszevieze is a cellist, composer, improviser and multidisciplinary artist. He is also the founder and director of the experimental music group Apartment House, releasing over 60 albums with them to date. His most recent solo album is ‘Le Jardin des Plantes’ on The Trilogy Tapes, UK.</div></div>
     </div>
   </div>
 </section>
@@ -723,11 +737,35 @@ The final form of each work remains fluid, shaped in real-time by the ensemble. 
 </div><!-- /page -->
 
 <script>
+  const heroText = {
+    el: {
+      eyebrow: '6daEXIt Improvisation Ensemble — Θεσσαλονίκη 2026',
+      subtitle: 'Παγκόσμιες Πρεμιέρες',
+      labelDate: 'Ημερομηνία',
+      date: 'Παρασκευή<br>17 Απριλίου 2026',
+      labelComp: 'Συνθέτες',
+    },
+    en: {
+      eyebrow: '6daEXIt Improvisation Ensemble — Thessaloniki 2026',
+      subtitle: 'World Premieres',
+      labelDate: 'Date',
+      date: 'Friday<br>17 April 2026',
+      labelComp: 'Composers',
+    }
+  };
+
   function setLang(lang) {
     document.getElementById('lang-el').style.display = lang === 'el' ? 'block' : 'none';
     document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    // Update hero
+    const t = heroText[lang];
+    document.getElementById('hero-eyebrow').textContent = t.eyebrow;
+    document.getElementById('hero-subtitle').textContent = t.subtitle;
+    document.getElementById('hero-label-date').textContent = t.labelDate;
+    document.getElementById('hero-date').innerHTML = t.date;
+    document.getElementById('hero-label-comp').textContent = t.labelComp;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
